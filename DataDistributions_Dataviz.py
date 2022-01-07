@@ -1,4 +1,4 @@
-# by Matias I. Bofarull Oddo - 2021.12.28
+# by Matias I. Bofarull Oddo - 2022.01.06
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -54,11 +54,47 @@ def QuickScatterplot(dataset, name):
 
 def QuickHistogram(dataset, name):
     plt.figure(figsize=(9, 9))
-    plt.hist(dataset, bins=999, orientation="horizontal")
+    plt.hist(dataset, bins=333, orientation="horizontal")
     plt.xlabel("Histogram")
     plt.title(name + " distribution")
     plt.show()
 
+
+def QuickBoxplot(dataset, name):
+    plt.figure(figsize=(9, 9))
+    plt.boxplot(dataset)
+    plt.xticks([])
+    plt.xlabel("Boxplot")
+    plt.title(name + " distribution")
+    plt.show()
+
+
+def AllPlotsGo(dataset, name):
+    DensityDotplot(dataset, name)
+    QuickScatterplot(dataset, name)
+    QuickHistogram(dataset, name)
+    QuickBoxplot(dataset, name)
+
+
+#############################################################################
+
+title = "Bimodal Triangular"
+
+left = -5
+right = +5
+nums = 49999
+
+right_triangular = R.default_rng().triangular(left, left, 0, size=nums)
+left_triangular = R.default_rng().triangular(0, right, right, size=nums)
+nums = list(left_triangular) + list(right_triangular)
+index = list(range(len(nums)))
+R.shuffle(index)
+
+nums_triangular = []
+for i in index:
+    nums_triangular.append(nums[i])
+
+AllPlotsGo(nums_triangular, title)
 
 #############################################################################
 
@@ -70,9 +106,7 @@ right = +5
 nums = 99999
 nums_triangular = R.default_rng().triangular(left, peak, right, size=nums)
 
-DensityDotplot(nums_triangular, title)
-QuickScatterplot(nums_triangular, title)
-QuickHistogram(nums_triangular, title)
+AllPlotsGo(nums_triangular, title)
 
 #############################################################################
 
@@ -83,9 +117,7 @@ sigma = 1
 nums = 99999
 nums_normal = R.default_rng().normal(mu, sigma, nums)
 
-DensityDotplot(nums_normal, title)
-QuickScatterplot(nums_normal, title)
-QuickHistogram(nums_normal, title)
+AllPlotsGo(nums_normal, title)
 
 #############################################################################
 
@@ -104,8 +136,6 @@ def StepwiseFunction(size, steps):
 nums = 99999
 nums_stepwise = StepwiseFunction(nums, 10)
 
-DensityDotplot(nums_stepwise, title)
-QuickScatterplot(nums_stepwise, title)
-QuickHistogram(nums_stepwise, title)
+AllPlotsGo(nums_stepwise, title)
 
 #############################################################################
