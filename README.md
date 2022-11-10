@@ -19,7 +19,7 @@ Exploring unconventional uses of the matplotlib.pyplot library
 
 <br/>
 
-<img src="PyplotArt/main/Images/art.png" width="100%">
+<img src="https://raw.githubusercontent.com/dirediredock/PyplotArt/main/Images/art.png" width="100%">
 
 <img src="https://raw.githubusercontent.com/dirediredock/PyplotArt/main/Images/pyplotArt_WAVES_Dark.png" width="100%">
 
